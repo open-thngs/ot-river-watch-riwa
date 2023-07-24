@@ -2,7 +2,7 @@ import .power_modes
 import log
 import ..riwa_ble show RiWaBLEClient
 
-logger ::= log.Logger log.DEBUG_LEVEL log.DefaultTarget --name="station"
+logger ::= log.Logger log.DEBUG_LEVEL log.DefaultTarget --name="bouy"
 
 class BouyDefaultPowerMode extends PowerMode:
 
@@ -14,7 +14,7 @@ class BouyDefaultPowerMode extends PowerMode:
     ble_client = RiWaBLEClient
 
   run:
-    logger.debug "Starting RiWa Station"
+    logger.debug "Starting RiWa Bouy"
     ble_client.connect
     bouy_pressure := dps368.pressure
     bouy_temperature := dps368.temperature

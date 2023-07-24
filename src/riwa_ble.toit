@@ -6,8 +6,6 @@ BLE_TEMPERATURE_CHARACTERISTIC_UUID ::= BleUuid "bc424fa4-c969-4f72-808e-55c0ad1
 BLE_PRESSURE_CHARACTERISTIC_UUID ::= BleUuid "42a97385-5b71-40a5-b75d-69211027e577"
 BLE_HEIGHT_CHARACTERISTIC_UUID ::= BleUuid "99ff002a-0e00-4b52-a0ab-31f7de4f5017"
 
-SCAN_DURATION   ::= Duration --s=3
-
 logger ::= log.Logger log.DEBUG_LEVEL log.DefaultTarget --name="ble"
 
 class RiWaBLEServer:
@@ -41,6 +39,9 @@ class RiWaBLEServer:
 
     logger.debug "Advertising: $BLE_SERVICE_UUID with name RiWa-Station"
 
+  stop:
+    peripheral.stop_advertise
+
   wait_and_read_pressure timeout=0 -> float:
     if timeout != 0:
       exception := catch: with_timeout --ms=timeout:
@@ -68,8 +69,8 @@ class RiWaBLEClient:
     adapter = Adapter
     central = adapter.central
   
-  connect:
-    address := find_with_service central BLE_SERVICE_UUID
+  connect timeout/int=3:
+    address := find_with_service central BLE_SERVICE_UUID timeout
     remote_device = central.connect address
     services := remote_device.discover_services [BLE_SERVICE_UUID]
     master_ble/RemoteService := services.first
@@ -81,8 +82,8 @@ class RiWaBLEClient:
       else if characteristic.uuid == BLE_TEMPERATURE_CHARACTERISTIC_UUID:
         temperature_characteristic = characteristic
 
-  find_with_service central/Central service/BleUuid:
-    central.scan --duration=SCAN_DURATION: | device/RemoteScannedDevice |
+  find_with_service central/Central service/BleUuid duration/int=3:
+    central.scan --duration=(Duration --s=duration): | device/RemoteScannedDevice |
       if device.data.service_classes.contains service:
           logger.debug "Found device with service $service: $device"
           return device.address

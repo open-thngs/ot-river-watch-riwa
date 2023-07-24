@@ -13,6 +13,7 @@ import system.assets
 import encoding.tison
 import artemis
 import .modes.bouy_default_mode show BouyDefaultPowerMode
+import .modes.bouy_usb_mode show BouyUsbPowerMode
 
 logger ::= log.Logger log.DEBUG_LEVEL log.DefaultTarget --name="bouy"
 
@@ -22,11 +23,20 @@ main args:
   handle_container_params args
   dps368 := init_dsp368
   if is_usb_powered:
-    print "Running in USB powered mode"
+    exception := catch:
+      mode := BouyUsbPowerMode dps368
+      mode.run
+    if exception:
+      logger.error "Exception: $exception"
+      compute_next_start
   else:
-    mode := BouyDefaultPowerMode dps368
-    mode.run
-    compute_next_start
+    exception := catch:
+      mode := BouyDefaultPowerMode dps368
+      mode.run
+      compute_next_start
+    if exception:
+      logger.error "Exception: $exception"
+      compute_next_start
 
 init_dsp368:
   bus := i2c.Bus
@@ -46,7 +56,7 @@ init_dsp368:
 
 compute_next_start:
   adjusted_utc/TimeInfo := Time.now.utc.with --s=0 --ns=0 //get current time and sets seconds to 0
-  adjusted_utc = adjusted_utc.plus --m=1 //add one minute
+  adjusted_utc = adjusted_utc.plus --s=10 //add one minute
   sleeptime := adjusted_utc.time.ms_since_epoch - Time.now.ms_since_epoch
   logger.debug "sleeping for $sleeptime"
   Container.current.restart --delay=(Duration --ms=sleeptime)
