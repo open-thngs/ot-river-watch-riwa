@@ -1,0 +1,2 @@
+artemis device container install station src/station.toit -d 4413e7da-4c78-5d8c-b788-f9f767b87309 -- usb.powered=true
+artemis device container install bouy src/bouy.toit -d 263baeef-01c6-57bb-8894-f2fa3cb74aca -- usb.powered=true
