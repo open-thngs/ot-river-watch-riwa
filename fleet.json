@@ -1,0 +1,12 @@
+{
+  "id": "c09a7091-432b-5dda-9c3f-c292051adc88",
+  "organization": "37f99337-d91e-4c1a-96ab-3c8a38c647cd",
+  "groups": {
+    "floater": {
+      "pod": "floater@latest"
+    },
+    "station": {
+      "pod": "station@latest"
+    }
+  }
+}

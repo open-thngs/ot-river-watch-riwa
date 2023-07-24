@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "name": "station",
+  "extends": [
+    "pod-base.json"
+  ],
+  "containers": {
+    "station": {
+      "entrypoint": "src/master.toit"
+    }
+  }
+}
