@@ -1,0 +1,17 @@
+kibot:
+  version: 1
+  
+outputs:
+  - name: 'blender 3d view rear'
+    type: 'blender_export'
+    dir: 'img/render'
+    options:
+      point_of_view:
+        view: rear
+      pcb3d:
+        download: true
+      render_options:
+        samples: 100
+        transparent_background: true
+      outputs:
+        type: render
