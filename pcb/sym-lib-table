@@ -1,0 +1,11 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "RV-3028-C7")(type "KiCad")(uri "${KIPRJMOD}/components/RV-3028-C7/RV-3028-C7.kicad_sym")(options "")(descr ""))
+  (lib (name "ESP32-C3")(type "KiCad")(uri "${KIPRJMOD}/components/ESP32-C3/ESP32-C3.kicad_sym")(options "")(descr ""))
+  (lib (name "ESP32-S3-WROOM-1-N4R8")(type "KiCad")(uri "${KIPRJMOD}/components/ESP32-S3-WROOM-1-N4R8/ESP32-S3-WROOM-1-N4R8.kicad_sym")(options "")(descr ""))
+  (lib (name "DPS368XTSA1")(type "KiCad")(uri "${KIPRJMOD}/components/DPS368XTSA1/DPS368XTSA1.kicad_sym")(options "")(descr ""))
+  (lib (name "ISP1807-LR-ST")(type "KiCad")(uri "${KIPRJMOD}/components/ISP1807-LR-ST/ISP1807-LR-ST.kicad_sym")(options "")(descr ""))
+  (lib (name "JUWT1105MCD")(type "KiCad")(uri "${KIPRJMOD}/components/JUWT1105MCD/JUWT1105MCD.kicad_sym")(options "")(descr ""))
+  (lib (name "MS88SF2")(type "KiCad")(uri "${KIPRJMOD}/components/MS88SF2/MS88SF2.kicad_sym")(options "")(descr ""))
+  (lib (name "USB4105-GF-A")(type "KiCad")(uri "${KIPRJMOD}/components/USB4105-GF-A/USB4105-GF-A.kicad_sym")(options "")(descr ""))
+)
