@@ -1,4 +1,25 @@
-21935200908337944
+21943661126732868
+450405020524
+450405020524
+
+
+0
+3
+3
+62201021121
+WURTH-1.27MM-PITCH-2WAY
+WURTH-1.27mm-pitch-2way
+Connector
+0
+10
+10
+APHF1608LSEEQBDZGKC
+APHF1608LSEEQBDZGKC
+APHF1608LSEEQBDZGKC
+LED
+0
+4
+4
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -59702,6 +59723,13 @@ Capacitor Polarised
 0
 2
 2
+JUWT1105MCD
+supercap_horizontal
+
+
+0
+2
+2
 Jumper
 SolderJumper-2_P1.3mm_Bridged2Bar_Pad1.0x1.5mm
 SMD Solder Jumper, 1x1.5mm Pads, 0.3mm gap, bridged with 2 copper strips
@@ -83740,6 +83768,13 @@ rotary encoder
 0
 7
 6
+SKRKAEE020
+SKRKAEE020
+
+
+0
+2
+2
 Sensor
 Aosong_DHT11_5.5x12.0_P2.54mm
 Temperature and humidity module, http://akizukidenshi.com/download/ds/aosong/DHT11.pdf

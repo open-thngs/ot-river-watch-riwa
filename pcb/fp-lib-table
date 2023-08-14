@@ -8,4 +8,8 @@
   (lib (name "JUWT1105MCD")(type "KiCad")(uri "${KIPRJMOD}/components/JUWT1105MCD")(options "")(descr ""))
   (lib (name "MS88SF2")(type "KiCad")(uri "${KIPRJMOD}/components/MS88SF2/MS88SF2.pretty")(options "")(descr ""))
   (lib (name "USB4105-GF-A")(type "KiCad")(uri "${KIPRJMOD}/components/USB4105-GF-A")(options "")(descr ""))
+  (lib (name "SKRKAEE020")(type "KiCad")(uri "${KIPRJMOD}/components/SKRKAEE020/SKRKAEE020.pretty")(options "")(descr ""))
+  (lib (name "APHF1608LSEEQBDZGKC")(type "KiCad")(uri "${KIPRJMOD}/components/APHF1608LSEEQBDZGKC/KiCad")(options "")(descr ""))
+  (lib (name "450405020524")(type "KiCad")(uri "${KIPRJMOD}/components/450405020524/450405020524.pretty")(options "")(descr ""))
+  (lib (name "62201021121")(type "KiCad")(uri "${KIPRJMOD}/components/62201021121")(options "")(descr ""))
 )

@@ -83,9 +83,9 @@
   (pad "26" smd rect (at 8.68 1.94) (size 1.7 0.8) (layers "F.Cu" "F.Paste" "F.Mask") (tstamp 829f39f9-b06c-440f-810c-3e14cf098082))
   (pad "27" smd rect (at 8.68 3.04) (size 1.7 0.8) (layers "F.Cu" "F.Paste" "F.Mask") (tstamp 65d2a253-89e6-4ca9-a569-381903e5bfc2))
   (pad "28" smd rect (at 8.68 4.14) (size 1.7 0.8) (layers "F.Cu" "F.Paste" "F.Mask") (tstamp 44724ade-93b9-4ade-a2d8-0e70e5d28e21))
-  (model "${KIPRJMOD}/components/MS88SF2/MS88SF2.wrl"
-    (offset (xyz -8.25 -5.5 0))
-    (scale (xyz 10 10 10))
+  (model "${KIPRJMOD}/components/MS88SF2/MS88SF2--3DModel-STEP-381242.STEP"
+    (offset (xyz -8.25 -5.5 0.5))
+    (scale (xyz 1 1 1))
     (rotate (xyz 0 0 0))
   )
 )

@@ -475,6 +475,22 @@
     [
       "56041fc6-6e17-4b0b-abcc-5d5fefb6b277",
       "main"
+    ],
+    [
+      "4e753f40-e75c-4a33-ad47-1e299f550063",
+      "MCU"
+    ],
+    [
+      "4e5447bd-0140-4adc-bb38-6eb2d5832537",
+      "RTC"
+    ],
+    [
+      "0e7f9ef7-1cda-4261-877c-40c237fe66d1",
+      "Sensor"
+    ],
+    [
+      "76cd64a2-82d5-44eb-8e66-b56b87ea476d",
+      "PSU"
     ]
   ],
   "text_variables": {}
