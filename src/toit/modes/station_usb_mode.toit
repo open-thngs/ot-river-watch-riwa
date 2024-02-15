@@ -27,12 +27,18 @@ class StationUsbPowerMode extends PowerMode:
   run:
     logger.debug "Starting RiWa Station"
     ble_server.start
-
+    
     while true:
       bouy_pressure := ble_server.wait_and_read_pressure
       // bouy_pressure_ring_buffer.append bouy_pressure
       // logger.debug "Pressure received: $bouy_pressure"
-      station_pressure := dps368.pressure
+      pressure-total := 0.0
+      10.repeat:
+        pressure-total += dps368.pressure
+        sleep --ms=20
+      
+      station_pressure := pressure-total / 10
+      // station_pressure := dps368.pressure
       temperature := dps368.temperature
       
       calculate_height_difference station_pressure bouy_pressure temperature

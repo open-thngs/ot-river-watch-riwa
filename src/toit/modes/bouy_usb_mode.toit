@@ -16,8 +16,13 @@ class BouyUsbPowerMode extends PowerMode:
   run:
     logger.debug "Starting RiWa Bouy"
     ble_client.connect 60
+    
     while true:
-      bouy_pressure := dps368.pressure
+      pressure-total := 0.0
+      10.repeat:
+        pressure-total += dps368.pressure
+        sleep --ms=20
+      bouy_pressure := pressure-total / 10
       bouy_temperature := dps368.temperature
       logger.debug "$(%.2f bouy_pressure) pA"
       logger.debug "$(%.2f bouy_temperature) °C"

@@ -18,10 +18,10 @@ import .modes.station_usb_mode
 
 logger ::= log.Logger log.DEBUG_LEVEL log.DefaultTarget --name="station"
 
-is_usb_powered := false
+is_usb_powered := true
 
 main args:
-  handle_container_params args
+  // handle_container_params args
   dps368 := create_dps368
   if is_usb_powered:
     mode := StationUsbPowerMode dps368
@@ -54,6 +54,6 @@ compute_next_start:
   logger.debug "sleeping for $sleeptime"
   Container.current.restart --delay=(Duration --ms=sleeptime)
 
-handle_container_params args:
-  print "args: $args"
-  is_usb_powered = args[0] == "usb.powered=true"
+// handle_container_params args:
+//   print "args: $args"
+//   is_usb_powered = args[0] == "usb.powered=true"

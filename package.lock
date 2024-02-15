@@ -7,17 +7,21 @@ prefixes:
 packages:
   pkg-ntp:
     url: github.com/toitlang/pkg-ntp
+    name: ntp
     version: 1.0.0
     hash: 1c3cc4a4819f459393f00efc576f66f838665719
   toit-artemis:
     url: github.com/toitware/toit-artemis
+    name: artemis
     version: 0.5.0
     hash: 972ecefa8acfd85528cbb524e263abe1be60db3a
   toit-dps368:
-    url: github.com/Informaticore/toit-dps368
-    version: 1.1.0
-    hash: f79f3777469aedfece1830f80900c714a34697ad
+    url: github.com/informaticore/toit-dps368
+    name: dps368
+    version: 1.1.1
+    hash: 012b1a8448dac73b9fab703ae900ae29740bd90e
   toit-ringbuffer:
-    url: github.com/Informaticore/toit-ringbuffer
+    url: github.com/informaticore/toit-ringbuffer
+    name: ringbuffer
     version: 1.0.1
     hash: 77262a4409c572c00cbc1e906d9b583e3aa45ee9
