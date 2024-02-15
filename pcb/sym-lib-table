@@ -12,4 +12,5 @@
   (lib (name "APHF1608LSEEQBDZGKC")(type "KiCad")(uri "${KIPRJMOD}/components/APHF1608LSEEQBDZGKC/KiCad/APHF1608LSEEQBDZGKC.kicad_sym")(options "")(descr ""))
   (lib (name "450405020524")(type "KiCad")(uri "${KIPRJMOD}/components/450405020524/450405020524.kicad_sym")(options "")(descr ""))
   (lib (name "62201021121")(type "KiCad")(uri "${KIPRJMOD}/components/62201021121/62201021121.kicad_sym")(options "")(descr ""))
+  (lib (name "Espressif")(type "KiCad")(uri "${KIPRJMOD}/components/ESP32-S3/Espressif.kicad_sym")(options "")(descr ""))
 )

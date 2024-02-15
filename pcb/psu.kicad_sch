@@ -933,7 +933,7 @@
     (stroke (width 0) (type default))
     (uuid 7809cba9-4390-4615-93b3-88156c7f1824)
   )
-  (wire (pts (xy 58.42 146.685) (xy 58.42 154.94))
+  (wire (pts (xy 58.42 146.05) (xy 58.42 154.94))
     (stroke (width 0) (type default))
     (uuid 79ba2f04-15cb-487a-8c59-1f0f3c8225bc)
   )
@@ -1158,6 +1158,39 @@
   (hierarchical_label "USB_D-" (shape input) (at 25.4 21.59 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right))
     (uuid 1b3bf0b4-eea1-4369-a60f-6c5d5823d4b4)
+  )
+
+  (symbol (lib_id "power:VBUS") (at 99.06 87.63 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid 032e6af7-16d2-4b92-b788-5a67a6628846)
+    (property "Reference" "#PWR01" (at 99.06 91.44 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "VBUS" (at 99.06 84.1281 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "" (at 99.06 87.63 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 99.06 87.63 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid cb9846fb-78a3-4ffc-82c8-6b3f44445fd4))
+    (instances
+      (project "ot-riwa"
+        (path "/27c79cfd-7e0d-4d78-9eed-2a8b043fdd67/56041fc6-6e17-4b0b-abcc-5d5fefb6b277"
+          (reference "#PWR01") (unit 1)
+        )
+        (path "/27c79cfd-7e0d-4d78-9eed-2a8b043fdd67/56041fc6-6e17-4b0b-abcc-5d5fefb6b277/76cd64a2-82d5-44eb-8e66-b56b87ea476d"
+          (reference "#PWR03") (unit 1)
+        )
+      )
+      (project "rep-trap-pcb"
+        (path "/b363dc8f-4a45-4779-a397-ccb82393dab8/eebb1d37-a01d-4adf-be70-a8e8f9293475/23008b32-6835-495f-a93f-d60d3125c4cb"
+          (reference "#PWR014") (unit 1)
+        )
+      )
+    )
   )
 
   (symbol (lib_id "450405020524:450405020524") (at 36.83 152.4 0) (unit 1)
@@ -2009,19 +2042,19 @@
     )
   )
 
-  (symbol (lib_id "Connector:TestPoint") (at 58.42 146.685 0) (unit 1)
+  (symbol (lib_id "Connector:TestPoint") (at 58.42 146.05 0) (unit 1)
     (in_bom no) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 7ebc2526-4062-4a5f-8f2a-76d96b1f8a75)
-    (property "Reference" "TP4" (at 60.96 142.113 0)
+    (property "Reference" "TP4" (at 60.96 141.478 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Value" "TP_ENABLE" (at 60.96 144.653 0)
+    (property "Value" "TP_ENABLE" (at 60.96 144.018 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "TestPoint:TestPoint_Pad_D2.0mm" (at 63.5 146.685 0)
+    (property "Footprint" "TestPoint:TestPoint_Pad_D1.5mm" (at 63.5 146.05 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Datasheet" "~" (at 63.5 146.685 0)
+    (property "Datasheet" "~" (at 63.5 146.05 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid efd63ae8-978d-40aa-8095-a4ef92d50d25))
@@ -2446,39 +2479,6 @@
       (project "rep-trap-pcb"
         (path "/b363dc8f-4a45-4779-a397-ccb82393dab8/eebb1d37-a01d-4adf-be70-a8e8f9293475/23008b32-6835-495f-a93f-d60d3125c4cb"
           (reference "#PWR06") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "power:+BATT") (at 99.06 87.63 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid d3bb5e20-91ce-409e-968c-f56869708b24)
-    (property "Reference" "#PWR05" (at 99.06 91.44 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Value" "+BATT" (at 99.06 84.1281 0)
-      (effects (font (size 1.27 1.27)))
-    )
-    (property "Footprint" "" (at 99.06 87.63 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 99.06 87.63 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid 561ebe0b-d488-452e-8975-b07b3bf43096))
-    (instances
-      (project "ot-riwa"
-        (path "/27c79cfd-7e0d-4d78-9eed-2a8b043fdd67/56041fc6-6e17-4b0b-abcc-5d5fefb6b277"
-          (reference "#PWR05") (unit 1)
-        )
-        (path "/27c79cfd-7e0d-4d78-9eed-2a8b043fdd67/56041fc6-6e17-4b0b-abcc-5d5fefb6b277/76cd64a2-82d5-44eb-8e66-b56b87ea476d"
-          (reference "#PWR03") (unit 1)
-        )
-      )
-      (project "rep-trap-pcb"
-        (path "/b363dc8f-4a45-4779-a397-ccb82393dab8/eebb1d37-a01d-4adf-be70-a8e8f9293475/23008b32-6835-495f-a93f-d60d3125c4cb"
-          (reference "#PWR020") (unit 1)
         )
       )
     )
