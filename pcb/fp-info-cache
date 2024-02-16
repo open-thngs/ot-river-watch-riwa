@@ -1,4 +1,4 @@
-22154740728354057
+22159865127051233
 450405020524
 450405020524
 
@@ -6,6 +6,13 @@
 0
 3
 3
+124018612112A
+CONN_124018612112A_AMP
+
+124018612112A 
+0
+30
+30
 62201021121
 WURTH-1.27MM-PITCH-2WAY
 WURTH-1.27mm-pitch-2way
@@ -51743,6 +51750,13 @@ XDCR_DPS368XTSA1
 0
 8
 8
+DRV5032DULPGM
+DRV5032DULPGM
+DRV5032DULPGM-3
+Integrated Circuit
+0
+3
+3
 Diode_SMD
 D_0201_0603Metric
 Diode SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf), generated with kicad-footprint-generator
@@ -61267,6 +61281,13 @@ LED_THT
 LED_VCCLite_5381H7_6.35x6.35mm
 Yellow 5381 Series LED VCCLite https://vcclite.com/wp-content/uploads/wpallimport/files/files/5381Series.pdf http://static.vcclite.com/pdf/Mounting%20Hole%20Pattern%202.pdf
 Yellow 5381 Series LED
+0
+2
+2
+LESD5D5.0CT1G
+LESD5D50CT1G
+LESD5D5.0CT1G-1
+TVS Diode (Bi-directional)
 0
 2
 2

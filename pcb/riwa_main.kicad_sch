@@ -276,6 +276,7 @@
     (uuid bdeaea10-d6a3-4ca4-90f4-ac622b9a4ef6)
   )
 
+  (no_connect (at 130.81 187.96) (uuid 6e2b6577-61ec-4543-9aa8-6e4c278576f3))
   (no_connect (at 130.81 179.07) (uuid 9d9e24db-6ca0-4403-9f81-4ec550f48588))
   (no_connect (at 130.81 170.18) (uuid d47e240c-1bbf-4922-9ad6-42901d844448))
 
@@ -735,6 +736,31 @@
         )
         (path "/27c79cfd-7e0d-4d78-9eed-2a8b043fdd67/56041fc6-6e17-4b0b-abcc-5d5fefb6b277/4e753f40-e75c-4a33-ad47-1e299f550063"
           (reference "C8") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "Mechanical:MountingHole_Pad") (at 130.81 185.42 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid c7692a34-bc98-4628-b108-b76425465eb6)
+    (property "Reference" "H4" (at 133.35 182.88 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Value" "MountingHole_Pad" (at 133.35 185.42 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Footprint" "MountingHole:MountingHole_2.5mm_Pad_Via" (at 130.81 185.42 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 130.81 185.42 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 9054fd6e-4b8b-48d9-9f53-7792a43a2aa6))
+    (instances
+      (project "ot-riwa"
+        (path "/27c79cfd-7e0d-4d78-9eed-2a8b043fdd67/56041fc6-6e17-4b0b-abcc-5d5fefb6b277"
+          (reference "H4") (unit 1)
         )
       )
     )
