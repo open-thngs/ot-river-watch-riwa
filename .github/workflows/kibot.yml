@@ -1,16 +1,18 @@
-# SPDX-FileCopyrightText: 2022 nerdyscout <https://github.com/nerdyscout/>
-#
-# SPDX-License-Identifier: CC0-1.0
-
 name: "KiBot CI"
-on: [push, pull_request] 
+on:
+  workflow_dispatch:
+  push:
+    tags:        
+      - '**'
+    paths:
+      - pcb/**
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   quick:
-    name: "Quick Start (action)"
+    name: "Manufacturing Data (action)"
     runs-on: ubuntu-latest
-    container: ghcr.io/inti-cmnb/kicad7_auto:latest
+    container: ghcr.io/inti-cmnb/kicad7_auto_full:latest
 
     steps:
     - name: Checkout repo
@@ -21,7 +23,7 @@ jobs:
 
     - name: Run KiBot
       run: |
-        kibot -b "pcb/rep-trap-pcb.kicad_pcb"
+        kibot -b "pcb/ot-riwa.kicad_pcb"
       
     - name: Upload results
       uses: actions/upload-artifact@v3
