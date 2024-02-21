@@ -10,7 +10,7 @@ jobs:
 
     steps:
     - name: Checkout repo
-      uses: actions/checkout@v3
+      uses: actions/checkout:latest
       with:
         # So we can run a diff between last 2 changes
         fetch-depth: '0'
@@ -20,7 +20,7 @@ jobs:
         kibot -b "pcb/ot-riwa.kicad_pcb"
       
     - name: Upload results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact:latest
       with:
         name: Automatic_outputs
         path: Generated
