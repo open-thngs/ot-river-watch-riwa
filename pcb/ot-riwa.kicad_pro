@@ -55,7 +55,14 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [],
+      "drc_exclusions": [
+        "lib_footprint_issues|162560541|96091150|807784f8-8e7a-4983-8343-1dc67fa82f34|00000000-0000-0000-0000-000000000000",
+        "lib_footprint_mismatch|118618000|107442000|965b1bca-9eb4-4c1a-831e-b4e9677e58e0|00000000-0000-0000-0000-000000000000",
+        "lib_footprint_mismatch|119126000|115804000|44c5370f-71a8-4094-9dbc-13e1bdc72336|00000000-0000-0000-0000-000000000000",
+        "lib_footprint_mismatch|119217600|87045400|8621a531-62bb-41b0-8337-d16fc5fa8bb8|00000000-0000-0000-0000-000000000000",
+        "lib_footprint_mismatch|136271000|67056000|f43427e7-5802-499a-be3b-f88c6152a1a5|00000000-0000-0000-0000-000000000000",
+        "lib_footprint_mismatch|153289000|107950000|b4f91d17-f5b9-4fea-b200-7e33705d74dd|00000000-0000-0000-0000-000000000000"
+      ],
       "meta": {
         "version": 2
       },
@@ -87,9 +94,9 @@
         "missing_courtyard": "ignore",
         "missing_footprint": "warning",
         "net_conflict": "warning",
-        "npth_inside_courtyard": "ignore",
+        "npth_inside_courtyard": "warning",
         "padstack": "warning",
-        "pth_inside_courtyard": "ignore",
+        "pth_inside_courtyard": "warning",
         "shorting_items": "error",
         "silk_edge_clearance": "warning",
         "silk_over_copper": "warning",
