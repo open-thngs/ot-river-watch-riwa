@@ -40,8 +40,8 @@ main args:
 
 init_dsp368:
   bus := i2c.Bus
-    --sda=gpio.Pin 21
-    --scl=gpio.Pin 22
+    --sda=gpio.Pin 18
+    --scl=gpio.Pin 17
 
   i2cdevice := bus.device dps368.I2C_ADDRESS_DEFAULT
   dps368 := dps368.DPS368 i2cdevice

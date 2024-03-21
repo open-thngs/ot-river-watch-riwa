@@ -1,26 +1,15 @@
-import gpio
+import ..espnow.rgb-led show RGBLED
 
 main:
-  r := gpio.Pin 5 --output=true 
-  g := gpio.Pin 6 --output=true 
-  b := gpio.Pin 7 --output=true
-  r.set 1
-  g.set 1
-  b.set 1
+  led := RGBLED
+  colors := [[255, 255, 255],[255, 0, 0],[0, 255, 0],[0, 0, 255],[255, 0, 255],[125, 68, 255],[0, 255, 255],[255, 255, 0],[0, 0, 0]]
 
   while true:
-    print "red"
-    r.set 0
-    g.set 1
-    b.set 1
-    sleep --ms=1000
-    print "green"
-    r.set 1
-    g.set 0
-    b.set 1
-    sleep --ms=1000
-    print "blue"
-    r.set 1
-    g.set 1
-    b.set 0
-    sleep --ms=1000
+    colors.do: | color |
+      led.set-color color[0] color[1] color[2]
+      100.repeat: | brightness |
+        led.set_brightness brightness
+        sleep --ms=3
+      100.repeat: | brightness |
+        led.set_brightness 100 - brightness
+        sleep --ms=3

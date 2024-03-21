@@ -8,10 +8,10 @@ logger ::= log.Logger log.DEBUG_LEVEL log.DefaultTarget --name="bouy"
 
 create:
   bus := i2c.Bus
-    --sda=gpio.Pin 21
-    --scl=gpio.Pin 22
+    --sda=gpio.Pin 18
+    --scl=gpio.Pin 17
 
-  i2cdevice := bus.device dps368.I2C_ADDRESS_DEFAULT
+  i2cdevice := bus.device dps368.I2C_ADDRESS_PD
   dps368 := dps368.DPS368 i2cdevice
   dps368.init cfg.MEASURE_RATE.TIMES_4 cfg.OVERSAMPLING_RATE.TIMES_64 cfg.MEASURE_RATE.TIMES_4 cfg.OVERSAMPLING_RATE.TIMES_64
 
