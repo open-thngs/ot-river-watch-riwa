@@ -3,26 +3,22 @@ import esp32.espnow show Address
 import log
 import gpio
 import .utils
+import .rgb-led show RGBLED
 
 ADDRESS ::= Address #[0x30, 0x30, 0xF9, 0x79, 0x1A, 0xE4]
-CHANNEL ::= 0
+CHANNEL ::= 2
 
 logger ::= log.Logger log.DEBUG_LEVEL log.DefaultTarget --name="station"
+led := RGBLED
 
 main args:
-  r := gpio.Pin 5 --output=true 
-  g := gpio.Pin 6 --output=true 
-  b := gpio.Pin 7 --output=true
-  r.set 1
-  g.set 0
-  b.set 1
+  led.green
 
   logger.debug "MACA: $get-mac-address-str"
   logger.debug "Start Station"
-  service := espnow.Service.station --key=null
+  service := espnow.Service.station --key=null --channel=CHANNEL
   logger.debug "Add peer: $ADDRESS on channel $CHANNEL"
   service.add-peer ADDRESS
-    --channel=CHANNEL
 
   while true:
     print "Waiting for data"
