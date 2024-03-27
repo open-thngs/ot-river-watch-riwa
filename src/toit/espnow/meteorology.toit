@@ -11,6 +11,7 @@ logger ::= log.Logger log.DEBUG_LEVEL log.DefaultTarget --name="pressure-math"
 
 class MeteorologicalData:
   bouy-pressure := ?
+  bouy-temperature := ?
   station-pressure := ?
   temperature := ?
   air-density := 0
@@ -19,7 +20,7 @@ class MeteorologicalData:
   height-difference-cm := 0
   height-difference-with-uncertainty-cm := 0
 
-  constructor .bouy-pressure .station-pressure .temperature:
+  constructor .bouy-pressure .bouy-temperature .station-pressure .temperature:
     air-density = calculate_air_density temperature station_pressure
     above-sea-level = calculate_height_above_sea_level temperature station_pressure
     delta-pressure = (bouy_pressure - station_pressure)
@@ -51,6 +52,13 @@ class MeteorologicalData:
     // logger.debug "delta-pressure: $delta-pressure"
     logger.debug "height-difference-cm: $(%.2f height-difference-cm) cm"
     // logger.debug "height-difference-with-uncertainty-cm: $height-difference-with-uncertainty-cm"
+
+  dump-simple:
+    logger.debug "Bouy:    $(%.2f bouy-pressure) Pa     $(%.2f bouy-temperature)°C"
+    logger.debug "Station: $(%.2f station-pressure) Pa  $(%.2f temperature)°C"
+    logger.debug "#####################################"
+    logger.debug "# Height: $(%.2f height-difference-cm) cm"
+    logger.debug "#####################################"
 
 
     

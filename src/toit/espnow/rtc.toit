@@ -34,23 +34,31 @@ class RTC:
   now:
     return rtc.now.local
 
-  compute-next-boot-time:
-    current-time/TimeInfo := rtc.now.local
-    logger.debug "Current time: $current-time"
-    current-second := current-time.s
-    next-tenth-seconds := ((current-second % 100) - (current-second % 10)) + 10
-    logger.debug "current-second: $current-second, next-tenth-seconds: $next-tenth-seconds"
-    next-time/TimeInfo := Time.now.utc.with --s=next-tenth-seconds --ns=0
-    remaining-ms := next-time.time.ms-since-epoch - current-time.time.ms-since-epoch
-    logger.debug "computed time to sleep: $remaining-ms ms"
-    return remaining-ms
-
-  set-alarm:
+  compute-next-boot-time-ms is-bouy=false:
     current-time/TimeInfo := rtc.now.local
     logger.debug "Current time: $current-time"
     current-second := current-time.s
     next-tenth-seconds := ((current-second % 100) - (current-second % 10)) + 10
     logger.debug "current-second: $current-second, next-tenth-seconds: $next-tenth-seconds"
     next-time/TimeInfo := rtc.now.local.with --s=next-tenth-seconds --ns=0
-    timer-ms := next-time.time.ms-since-epoch - current-time.time.ms-since-epoch
+    if is-bouy: next-time.plus --ms=100 //add 100ms if bouy
+    return next-time.time
+    // timer-ms := next-time.time.ms-since-epoch - current-time.time.ms-since-epoch
+    // return timer-ms
+
+  compute-next-boot-time-min:
+    current-time/TimeInfo := rtc.now.local
+    logger.debug "Current time: $current-time"
+    current-minute := current-time.m
+    next := current-minute + 1
+    logger.debug "current-min: $current-minute, next-min: $next"
+    next-time/TimeInfo := rtc.now.local.with --m=next --s=0 --ns=0
+    return next-time.time
+
+  set-alarm next-time/Time:
+    logger.debug "Setting alarm to $next-time.stringify"
+    alarm := Alarm --minutes=next-time.local.m
+    rtc.alarm alarm
+
+  set-count-down timer-ms:
     rtc.count-down-timer --ms=timer-ms --enable-interrupt=true
