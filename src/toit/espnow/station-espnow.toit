@@ -1,83 +1,106 @@
 import esp32.espnow
 import esp32.espnow show Address
+import esp32
 import .dps368device as dps368device
+import .rgb-led show RGBLED
 import log
 import .utils
 import .meteorology show MeteorologicalData
 import gpio
+import .rtc show RTC
+import i2c
 
-ADDRESS ::= Address #[0x30, 0x30, 0xF9, 0x79, 0x1A, 0xE4]
-CHANNEL ::= 0
+// ADDRESS ::= Address #[0x30, 0x30, 0xF9, 0x79, 0x1A, 0xE4]
+ADDRESS ::= Address #[0x30, 0x30, 0xF9, 0x79, 0x19, 0xC8]
+CHANNEL ::= 5
 
 logger ::= log.Logger log.DEBUG_LEVEL log.DefaultTarget --name="station"
 dps368 := ?
-pin := ?
+rtc := ?
+rtc-interrupt-pin := ?
+btn-interrupt-pin := ?
+led := ?
+service := ?
+data-log := []
 
-r := gpio.Pin 5 --output=true 
-g := gpio.Pin 6 --output=true 
-b := gpio.Pin 7 --output=true
+station-pressure := 0.0
+station-temperature := 0.0
 
 main args:
-  show-green
+  logger.debug "Reset reason: $esp32.reset-reason (not external gpio)"
+
+  led = RGBLED
+  led.green
 
   logger.debug "MACA: $get-mac-address-str"
-  sync-ntp
-  pin = gpio.Pin 2 --input --pull-up
-  dps368 = dps368device.create
-  service := espnow.Service.station --key=null
+  bus := i2c.Bus
+    --sda=gpio.Pin 18
+    --scl=gpio.Pin 17
+
+  // rtc-interrupt-pin = gpio.Pin 1 --input --pull-up=true
+  // btn-interrupt-pin = gpio.Pin 2 --input
+  rtc = RTC bus
+  dps368 = dps368device.create bus
+
+  // dps368.measurePressureOnce
+  station-pressure = dps368.pressure
+  // station-temperature = dps368.temperature
+  print "Station pressure: $station-pressure"
+
+  service = espnow.Service.station --key=null --channel=CHANNEL
+  // service = espnow.Service.station --key=null 
   logger.debug "Add peer: $ADDRESS on channel $CHANNEL"
-  service.add-peer ADDRESS 
-    --channel=CHANNEL
+  service.add-peer ADDRESS
 
-  receive-task service
+  // task::rtc-irq-watch
+  
+  start-receiver-service
+  bus.close
 
-receive-task service/espnow.Service:
+start-receiver-service:
+  bouy-pressure := 0.0
+  bouy-temperature := 0.0
+  m-time := Time.now.utc
+
   while true:
-    if pin.get == 0:
-      return
-    show-red
-    bouy-pressure := 0.0
-    bouy-temperature := 0.0
-    m-time := Time.now.utc
-    // timeout := catch: with-timeout (Duration --ms=5000):
     print "Waiting for data"
-    datagram := service.receive
-    logger.debug "Received data $datagram.stringify"
-    data-split := datagram.data.to-string.split "#"
-    m-time = (Time.parse data-split[0]).utc
-    bouy-pressure = float.parse data-split[1]
-    bouy-temperature = float.parse data-split[2]
-    
+    led.yellow
+    // timeout := catch: with-timeout (Duration --ms=1500):
+    while true:
+      led.blue
+      datagram := service.receive
+      led.green
+      current-time := rtc.now
+      data-split := datagram.data.to-string.split "#"
+      m-time = (Time.parse data-split[0]).utc
+      bouy-pressure = (float.parse data-split[1])
+      bouy-temperature = float.parse data-split[2]
+
+      station-pressure = dps368.pressure
+      station-temperature = dps368.temperature
+      
+      meteo-data := MeteorologicalData bouy-pressure bouy-temperature station-pressure station-temperature
+      meteo-data.dump-simple
+      sleep --ms=100
+      
+      // data-log.add "$current-time,$(%2f meteo-data.station-pressure),$(%2f station-temperature),$(%2f meteo-data.bouy-pressure),$(%2f bouy-temperature),$(%2f meteo-data.height-difference-cm)"
+
     // if timeout:
-    //   logger.debug "Timeout"
-    //   compute-next-start
-    //   continue
-   
-    station-pressure := dps368.pressure
-    
-    meteo-data := MeteorologicalData bouy-pressure station-pressure dps368.temperature
-    meteo-data.dump
-    // sleep --ms=250
-    led-off
-    // logger.debug "Time: $(%02d m-time.h):$(%02d m-time.m):$(%02d m-time.s) $(%.2f bouy-pressure) $(%.2f bouy-temperature)"
-    compute-next-start
+    //   logger.debug "ERROR: Timeout reached"
+  
+  // next-time := rtc.compute-next-boot-time-min
+  // rtc.set-alarm next-time
+  // led.off
 
-show-green:
-  r.set 1
-  g.set 0
-  b.set 1
+  // esp32.enable-external-wakeup (1 << 1) false
+  // esp32.deep-sleep (Duration --m=1)
 
-show-red:
-  r.set 0
-  g.set 1
-  b.set 1
+  // data-log.do:
+  //   logger.debug it
 
-show-blue:
-  r.set 1
-  g.set 1
-  b.set 0
-
-led-off:
-  r.set 1
-  g.set 1
-  b.set 1
+rtc-irq-watch:
+  while true:
+    rtc-interrupt-pin.wait-for 0
+    // logger.debug "Countdown reached"
+    start-receiver-service
+    rtc-interrupt-pin.wait-for 1
