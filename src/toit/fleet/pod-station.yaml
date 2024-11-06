@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://toit.io/schemas/artemis/pod-specification/v1.json
+
+$schema: https://toit.io/schemas/artemis/pod-specification/v1.json
+version: 1
+name: station
+extends:
+  - pod-base.yaml
+containers:
+  main:
+    entrypoint: "../espnow/main.toit"
+  bouy-app:
+    entrypoint: "../espnow/station-espnow.toit"
+    triggers:
+      - gpio:
+        - pin: 1
+          level: "low"
